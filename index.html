@@ -380,6 +380,7 @@ const URO={
  '10-20':{t:'14–18h',x:'Revisão da prova'},
 };
 
+const SITE_URL='https://ghlguilherme.github.io/escalavascular/'; // endereço público da página (usado no rodapé da imagem do dia)
 const QS=new URLSearchParams(location.search);
 const TODAY=(()=>{const q=QS.get('dia');if(q&&/^\d{4}-\d{2}-\d{2}$/.test(q)){const [y,m,d]=q.split('-').map(Number);return new Date(y,m-1,d);}return new Date();})();
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -525,7 +526,7 @@ if(QS.has('hoje')||QS.has('dia')){
   const box=document.createElement('div');box.id='hoje';
   const fmt=TODAY.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
   const est=TODAY.getMonth()===8?'Cirurgia Vascular':(TODAY.getMonth()===9?'Urologia':'');
-  const link=location.origin+location.pathname.replace(/index\.html$/,'');
+  const link=SITE_URL||location.origin+location.pathname.replace(/index\.html$/,'');
   let card=document.querySelector('.day.today');
   box.innerHTML=`<div class="hoje-head"><div class="vessels"><i></i><i></i></div><div class="hoje-title">${fmt.charAt(0).toUpperCase()+fmt.slice(1)}</div><div class="hoje-sub">Internos C/D${est?' · '+est:''}</div></div>`;
   if(card){card.classList.remove('pulse');box.appendChild(card);}
