@@ -32,7 +32,8 @@ header.hero{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-co
 .vessels i:last-child{width:28px;background:var(--vein)}
 
 /* ---------- name filter (sticky) ---------- */
-.who{position:sticky;top:0;z-index:5;background:rgba(243,246,251,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:10px 0;margin:0 -12px 8px;padding-left:12px;padding-right:12px;border-bottom:1px solid var(--mist)}
+.who{position:sticky;top:0;z-index:5;display:flex;align-items:flex-end;gap:10px;background:rgba(243,246,251,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:10px 0;margin:0 -12px 8px;padding-left:12px;padding-right:12px;border-bottom:1px solid var(--mist)}
+.who-left{flex:1;min-width:0}
 .who .row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .who .row::-webkit-scrollbar{display:none}
 .who .hint{font-size:12px;color:var(--ink2);margin-bottom:6px}
@@ -157,7 +158,8 @@ body[data-who] .mine-box{display:block}
 
 
 /* ---------- top-right buttons ---------- */
-.actions{display:flex;justify-content:flex-end;gap:8px;margin-bottom:10px}
+.actions{flex:none;display:flex;gap:6px;padding-bottom:2px}
+.btn .s{display:none}
 .btn{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:7px 13px;font:inherit;font-weight:600;font-size:13px;cursor:pointer;text-decoration:none;white-space:nowrap}
 .btn svg{width:15px;height:15px;flex:none}
 .btn.primary{background:var(--ink);color:#fff}
@@ -171,7 +173,7 @@ body[data-who] .mine-box{display:block}
 .modal .bar .x{border:0;background:#EEF2F8;color:var(--ink);border-radius:999px;width:34px;height:34px;font-size:20px;line-height:1;cursor:pointer;font-family:inherit}
 .modal img{display:block;max-width:100%;max-height:calc(92vh - 56px);object-fit:contain;background:#EEF2F8}
 .modal .fail{display:none;padding:16px 20px 24px;font-size:13px;color:var(--ink2)}
-@media (max-width:480px){.btn{padding:7px 10px;font-size:12px}}
+@media (max-width:640px){.btn{padding:7px 10px;font-size:12px}.btn .l{display:none}.btn .s{display:inline}}
 
 @media print{
   body{background:#fff}
@@ -189,16 +191,6 @@ body[data-who] .mine-box{display:block}
 <body>
 <div class="wrap">
 
-<div class="actions">
-  <a class="btn primary" href="calendario.pdf" download="calendario.pdf">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
-    Baixar PDF
-  </a>
-  <button class="btn" type="button" id="btn-mapa">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14"/></svg>
-    Mapa do HC
-  </button>
-</div>
 
 <header class="hero">
   <div>
@@ -209,8 +201,20 @@ body[data-who] .mine-box{display:block}
 </header>
 
 <div class="who">
-  <div class="hint">Quem é você?</div>
-  <div class="row" id="picks"></div>
+  <div class="who-left">
+    <div class="hint">Quem é você?</div>
+    <div class="row" id="picks"></div>
+  </div>
+  <div class="actions">
+    <a class="btn primary" href="calendario.pdf" download="calendario.pdf">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
+      <span class="l">Baixar PDF</span><span class="s">PDF</span>
+    </a>
+    <button class="btn" type="button" id="btn-mapa">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14"/></svg>
+      <span class="l">Mapa do HC</span><span class="s">Mapa</span>
+    </button>
+  </div>
 </div>
 
 <div class="mine-box" id="mine"></div>
