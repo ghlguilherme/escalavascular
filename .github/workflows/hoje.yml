@@ -1,0 +1,57 @@
+# Salve como: .github/workflows/hoje.yml
+name: Imagem do dia (hoje.png)
+
+on:
+  schedule:
+    - cron: "0 8 * * *"      # 08:00 UTC = 05:00 em Brasília (sem horário de verão)
+  workflow_dispatch:         # botão "Run workflow" para testar na hora
+
+permissions:
+  contents: write            # necessário para o bot commitar hoje.png
+
+jobs:
+  hoje:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar Playwright + Chromium
+        run: |
+          npm init -y >/dev/null
+          npm i playwright@1
+          npx playwright install --with-deps chromium
+
+      - name: Servir a página localmente
+        run: |
+          nohup python3 -m http.server 8080 >/dev/null 2>&1 &
+          sleep 2
+
+      - name: Gerar hoje.png
+        run: node scripts/hoje.mjs
+        env:
+          PAGE_URL: http://localhost:8080/index.html?hoje
+          # Para testar um dia específico, troque por:
+          # PAGE_URL: http://localhost:8080/index.html?dia=2026-09-15
+
+      - name: Commitar a imagem
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hoje.png
+          git diff --cached --quiet || git commit -m "hoje.png $(TZ=America/Sao_Paulo date +%d/%m/%Y)"
+          git push
+
+      # ---------- (opcional) envio automático ----------
+      # Se o grupo migrar para o Telegram, descomente e crie os segredos
+      # TELEGRAM_TOKEN e TELEGRAM_CHAT_ID em Settings > Secrets > Actions.
+      # - name: Enviar no Telegram
+      #   run: |
+      #     LINK="https://SEU-USUARIO.github.io/escala-internos/"
+      #     curl -s -F chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+      #          -F photo=@hoje.png \
+      #          -F caption="Programação de hoje — escala completa: $LINK" \
+      #          "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendPhoto"
