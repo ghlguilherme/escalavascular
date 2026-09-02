@@ -178,6 +178,27 @@ body[data-who] .mine-box{display:block}
 .modal .fail{display:none;padding:16px 20px 24px;font-size:13px;color:var(--ink2)}
 @media (max-width:640px){.btn{padding:7px 10px;font-size:12px}.btn .l{display:none}.btn .s{display:inline}}
 
+/* ---------- modo ?hoje ---------- */
+body.mode-hoje{background:var(--paper)}
+body.mode-hoje .wrap{max-width:none;padding:0}
+body.mode-hoje .wrap>*:not(#hoje){display:none!important}
+#hoje{width:560px;max-width:100vw;padding:22px 20px 18px;background:var(--paper)}
+#hoje .hoje-title{font-size:22px;font-weight:800;letter-spacing:-.02em}
+#hoje .hoje-sub{color:var(--ink2);font-size:13px;margin:2px 0 14px}
+#hoje .day{font-size:15px;border-radius:16px;padding:14px 16px;opacity:1!important}
+#hoje .day.today::after{display:none}
+#hoje .day .dnum b{font-size:30px}
+#hoje .day .dnum span{font-size:14px}
+#hoje .chip{font-size:15px;padding:4px 12px}
+#hoje .tag{font-size:13px}
+#hoje .pl{font-size:15px;padding:8px 12px;margin-top:8px}
+#hoje .pl svg{width:18px;height:18px}
+#hoje .band{font-size:14px;padding:8px 12px;margin-top:8px}
+#hoje .band .t{font-size:13px}
+#hoje .line{gap:6px;margin-top:8px}
+#hoje .noesc{font-size:14px}
+#hoje .hoje-foot{margin-top:12px;font-size:11px;color:var(--ink2);word-break:break-all}
+
 @media print{
   body{background:#fff}
   .who,.mine-box,.actions,.modal{display:none!important}
@@ -198,7 +219,7 @@ body[data-who] .mine-box{display:block}
 <header class="hero">
   <div>
     <div class="vessels"><i></i><i></i></div>
-    <h1>Internos Grupo D· setembro e outubro de 2026</h1>
+    <h1>Internos Grupo D · setembro e outubro de 2026</h1>
     <p class="sub">Escala de plantões e postos da Cirurgia Vascular, aulas teóricas e discussões de casos da Urologia — tudo num lugar só. Toque no seu nome para ver só o que é seu.</p>
   </div>
 </header>
@@ -359,6 +380,8 @@ const URO={
  '10-20':{t:'14–18h',x:'Revisão da prova'},
 };
 
+const QS=new URLSearchParams(location.search);
+const TODAY=(()=>{const q=QS.get('dia');if(q&&/^\d{4}-\d{2}-\d{2}$/.test(q)){const [y,m,d]=q.split('-').map(Number);return new Date(y,m-1,d);}return new Date();})();
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const chip=(n,extra='')=>`<span class="chip" data-n="${n}" style="--c:var(--${n})">${n}${extra}</span>`;
 const moon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
@@ -373,8 +396,7 @@ function dayCard(m,d,opts){
   const cls=['day'];
   if(we)cls.push('weekend'); if(holi)cls.push('holiday');
   if(e&&e.all)cls.push('all');
-  const now=new Date();
-  if(now.getFullYear()===2026&&now.getMonth()===m-1&&now.getDate()===d)cls.push('today');
+  if(TODAY.getFullYear()===2026&&TODAY.getMonth()===m-1&&TODAY.getDate()===d)cls.push('today');
   let h=`<div class="dnum"><b>${d}</b><span>${DOW[w]}</span>${holi?`<span class="fer">feriado · ${holi}</span>`:(we?'<span class="wk">fim de semana</span>':'')}</div>`;
 
   if(e){
@@ -488,6 +510,7 @@ function renderMine(n){
 })();
 /* ----- rolagem automática até o dia de hoje ----- */
 window.addEventListener('load',()=>{
+  if(document.body.classList.contains('mode-hoje'))return;
   const t=document.querySelector('.day.today');
   if(!t)return;
   const bar=document.querySelector('.who').getBoundingClientRect().height;
@@ -495,6 +518,22 @@ window.addEventListener('load',()=>{
   window.scrollTo({top:y,behavior:'smooth'});
   setTimeout(()=>t.classList.add('pulse'),450);
 });
+/* ----- modo ?hoje : só o card do dia (usado pelo GitHub Actions para o print) ----- */
+if(QS.has('hoje')||QS.has('dia')){
+  document.body.classList.add('mode-hoje');
+  const wrap=document.querySelector('.wrap');
+  const box=document.createElement('div');box.id='hoje';
+  const fmt=TODAY.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
+  const est=TODAY.getMonth()===8?'Cirurgia Vascular':(TODAY.getMonth()===9?'Urologia':'');
+  const link=location.origin+location.pathname.replace(/index\.html$/,'');
+  let card=document.querySelector('.day.today');
+  box.innerHTML=`<div class="hoje-head"><div class="vessels"><i></i><i></i></div><div class="hoje-title">${fmt.charAt(0).toUpperCase()+fmt.slice(1)}</div><div class="hoje-sub">Internos C/D${est?' · '+est:''}</div></div>`;
+  if(card){card.classList.remove('pulse');box.appendChild(card);}
+  else{const n=document.createElement('div');n.className='day';n.innerHTML='<div class="noesc">Nenhuma atividade cadastrada para hoje.</div>';box.appendChild(n);}
+  box.insertAdjacentHTML('beforeend',`<div class="hoje-foot">escala completa: ${link}</div>`);
+  wrap.prepend(box);
+  window.scrollTo(0,0);
+}
 </script>
 </body>
 </html>
