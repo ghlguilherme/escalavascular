@@ -59,6 +59,9 @@ section{margin-top:26px}
 .day.weekend{background:#E9EEF6}
 .day.holiday{border-color:var(--artery);background:#FBEDEE}
 .day.today{box-shadow:0 0 0 3px var(--vein) inset}
+.day.today::after{content:"hoje";position:absolute;top:-9px;right:10px;background:var(--vein);color:#fff;font-size:10px;font-weight:600;border-radius:999px;padding:1px 8px}
+.day.today.pulse{animation:pulse 1.6s ease-out 2}
+@keyframes pulse{0%{box-shadow:0 0 0 3px var(--vein) inset,0 0 0 0 rgba(46,99,166,.55)}100%{box-shadow:0 0 0 3px var(--vein) inset,0 0 0 18px rgba(46,99,166,0)}}
 .day.pad{display:none}
 .day .dnum{display:flex;align-items:baseline;gap:6px;margin-bottom:2px}
 .day .dnum b{font-size:20px;font-weight:800;letter-spacing:-.02em}
@@ -195,7 +198,7 @@ body[data-who] .mine-box{display:block}
 <header class="hero">
   <div>
     <div class="vessels"><i></i><i></i></div>
-    <h1>Internos Grupo D · setembro e outubro de 2026</h1>
+    <h1>Internos Grupo D· setembro e outubro de 2026</h1>
     <p class="sub">Escala de plantões e postos da Cirurgia Vascular, aulas teóricas e discussões de casos da Urologia — tudo num lugar só. Toque no seu nome para ver só o que é seu.</p>
   </div>
 </header>
@@ -340,12 +343,12 @@ const VPROVA={'10-20':'Avaliação teórica final Vascular (20 ou 21/10)','10-21
 /* ----- discussão de casos uro (14–18h, terças e quintas) ----- */
 const URO={
  '9-1':{t:'8h10',x:'Apresentação do curso — solário da Urologia'},
- '9-3':{t:'14–16h',x:'Hart – Healer\u2019s Art (Prof. Newton)'},
+ '9-3':{t:'13h',x:'Hart – Healer\u2019s Art (Prof. Newton)'},
  '9-8':{t:'14–16h',x:'Hart – Healer\u2019s Art (Prof. Newton)'},
  '9-10':{t:'14–18h',x:'Caso 3 (Dr. Zeca)'},
- '9-15':{t:'14–18h',x:'Caso 1 (Dr. Márcio)'},
+ '9-15':{t:'14–18h',x:'Caso 5 (Dr. Hamilto)'},
  '9-17':{t:'14–18h',x:'Medicina Nuclear'},
- '9-22':{t:'14–18h',x:'Caso 5 (Dr. Hamilto)'},
+ '9-22':{t:'14–18h',x:'Caso 1 (Dr. Márcio)'},
  '9-24':{t:'14–18h',x:'Caso 2 (Dr. Amaro)'},
  '9-29':{t:'14–16h',x:'Hart – Healer\u2019s Art (Prof. Newton)'},
  '10-1':{t:'14–18h',x:'Caso 4 (Dr. Paulo)'},
@@ -483,6 +486,15 @@ function renderMine(n){
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close();});
   img.addEventListener('error',()=>{img.style.display='none';fail.style.display='block';});
 })();
+/* ----- rolagem automática até o dia de hoje ----- */
+window.addEventListener('load',()=>{
+  const t=document.querySelector('.day.today');
+  if(!t)return;
+  const bar=document.querySelector('.who').getBoundingClientRect().height;
+  const y=t.getBoundingClientRect().top+window.pageYOffset-bar-16;
+  window.scrollTo({top:y,behavior:'smooth'});
+  setTimeout(()=>t.classList.add('pulse'),450);
+});
 </script>
 </body>
 </html>
