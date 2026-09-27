@@ -68,7 +68,7 @@ section{margin-top:26px}
 .day .dnum span{font-size:12px;color:var(--ink2);font-weight:600}
 .day .dnum .fer{margin-left:auto;font-size:11px;color:var(--artery);font-weight:600}
 .day .dnum .wk{margin-left:auto;font-size:11px;color:var(--ink2)}
-.pl{display:flex;align-items:center;gap:6px;background:var(--night);color:#fff;border-radius:8px;padding:5px 8px;margin-top:4px;font-size:12px}
+.pl{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;background:var(--night);color:#fff;border-radius:8px;padding:5px 8px;margin-top:4px;font-size:12px}
 .pl svg{flex:none;width:14px;height:14px}
 .pl .h{margin-left:auto;font-weight:400;opacity:.85;white-space:nowrap}
 .pl.h24{background:linear-gradient(90deg,var(--night),#3B3F6B)}
@@ -85,6 +85,25 @@ section{margin-top:26px}
 .band .t{opacity:.75;font-size:11px}
 .noesc{margin-top:6px;font-size:12px;color:var(--ink2);font-style:italic}
 .morn{margin-top:4px}
+
+/* ---------- atividades do dia (urologia) ---------- */
+.acts{margin-top:6px;display:flex;flex-direction:column;gap:4px}
+.act{display:flex;gap:8px;align-items:flex-start;background:#EEF2F8;border-radius:8px;padding:5px 8px;font-size:12px}
+.act .hh{flex:none;color:var(--ink2);font-weight:600;font-size:11px;min-width:58px;padding-top:2px}
+.act .bd{flex:1;min-width:0;overflow-wrap:anywhere}
+.act .wt{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:3px}
+.act .todos{font-size:11px;color:var(--ink2);font-weight:600}
+.act .fora{display:block;margin-top:2px;font-size:11px;color:var(--ink2)}
+.act.cc{background:#FBEDEE}
+.act.amb{background:#E8F4F1}
+.act.disc{background:#E4ECF7}
+.act.vasc{background:#FBE7E7}
+.act.vis{background:#FFF4DE}
+.act.prova{background:var(--ink);color:#fff}
+.act.prova .hh,.act.prova .todos,.act.prova .fora{color:#fff;opacity:.85}
+.act.night{background:var(--night);color:#fff}
+.act.night .hh,.act.night .todos{color:#fff;opacity:.85}
+.act.night .chip{background:#fff;color:var(--c)}
 .mob-week{grid-column:1/-1;font-size:12px;font-weight:600;color:var(--ink2);padding:10px 2px 0}
 
 @media (min-width:960px){
@@ -197,6 +216,11 @@ body.mode-hoje .wrap>*:not(#hoje){display:none!important}
 #hoje .band .t{font-size:13px}
 #hoje .line{gap:6px;margin-top:8px}
 #hoje .noesc{font-size:14px}
+#hoje .acts{gap:5px;margin-top:8px}
+#hoje .act{font-size:14px;padding:7px 10px}
+#hoje .act .hh{font-size:12px;min-width:68px}
+#hoje .act .todos,#hoje .act .fora{font-size:12px}
+#hoje .act .chip{font-size:13px;padding:2px 9px}
 #hoje .hoje-foot{margin-top:12px;font-size:11px;color:var(--ink2);word-break:break-all}
 
 @media print{
@@ -247,7 +271,7 @@ body.mode-hoje .wrap>*:not(#hoje){display:none!important}
 <section id="set">
   <div class="sec-head">
     <h2>Setembro</h2><span class="badge vasc">Cirurgia Vascular</span>
-    <p>Plantão de segunda a sexta começa às 18h e dura 12h (até 6h). Fim de semana e feriado: 24h, das 7h às 7h. Sexta de manhã é discussão de casos para todos e à tarde ambulatório; segundas 14 e 21 são visitão.</p>
+    <p>Plantão de segunda a sexta começa às 18h e dura 12h (até 6h). Fim de semana e feriado: 24h, das 7h às 7h. Sexta de manhã é discussão de casos para todos e à tarde ambulatório; segundas 14 e 21 são visitão. <b>O estágio de Vascular termina em 27/09</b> — de 28 a 30/09 já valem a escala e a rotina da Urologia.</p>
   </div>
   <div class="legend">
     <span><i style="background:var(--night)"></i>plantão</span>
@@ -272,10 +296,23 @@ body.mode-hoje .wrap>*:not(#hoje){display:none!important}
 <section id="out">
   <div class="sec-head">
     <h2>Outubro</h2><span class="badge uro">Urologia</span>
-    <p>A escala de plantões e postos da Urologia ainda não foi divulgada; aqui estão a rotina semanal fixa e os compromissos da tarde (aulas vasculares, discussões de casos e provas).</p>
+    <p>Plantão de 1 interno por dia (bloco de 28/09 a 21/10). <b>Todos os plantões são de 24h, das 8h às 8h</b> do dia seguinte. Cada dia traz as atividades com horário e quem participa — <b>o plantonista do dia e o do dia anterior (que sai às 8h) ficam fora das atividades de centro cirúrgico</b> e seguem normalmente nas demais.</p>
   </div>
+  <div class="legend">
+    <span><i style="background:var(--night)"></i>plantão</span>
+    <span><i style="background:#FBEDEE"></i>centro cirúrgico (sem plantonista e pós)</span>
+    <span><i style="background:#E8F4F1"></i>ambulatório</span>
+    <span><i style="background:#E4ECF7"></i>discussão de casos uro</span>
+    <span><i style="background:#FBE7E7"></i>vascular</span>
+    <span><i style="background:#FFF4DE"></i>visita</span>
+  </div>
+  <div style="height:10px"></div>
   <div class="dow"><div>segunda</div><div>terça</div><div>quarta</div><div>quinta</div><div>sexta</div><div>sábado</div><div>domingo</div></div>
   <div class="cal" id="cal-out"></div>
+
+  <div style="height:18px"></div>
+  <h3 style="margin-bottom:8px">Mapa de plantões da Urologia · 28/09 a 21/10</h3>
+  <div class="map" id="map-uro"></div>
 
   <div style="height:18px"></div>
   <h3 style="margin-bottom:8px">Rotina semanal fixa dos internos na Urologia</h3>
@@ -285,19 +322,19 @@ body.mode-hoje .wrap>*:not(#hoje){display:none!important}
       <tbody>
         <tr><th class="t">6h30–7h15</th><td class="vis">Visita com residentes</td><td class="vis">Visita com residentes</td><td class="vis">Visita com residentes</td><td class="vis">Visita com residentes</td><td class="vis">Visita com residentes</td></tr>
         <tr><th class="t">manhã</th>
-          <td class="cc"><small>7–8h</small>Visita na enfermaria com docente<small>8–12h</small>Centro cirúrgico</td>
-          <td class="amb"><small>8–12h</small>Ambulatório uro geral</td>
-          <td class="cc"><small>8–12h</small>Atividade prática (centro cirúrgico)</td>
-          <td class="cc"><small>8–10h</small>Centro cirúrgico<small>10–12h</small>Visita na enfermaria com docente</td>
-          <td class="amb"><small>8–12h</small>Ambulatório uro geral</td></tr>
+          <td class="cc"><small>7–8h · todos</small>Visita na enfermaria com docente<small>8–12h · sem plantonista e pós</small>Centro cirúrgico</td>
+          <td class="amb"><small>8–12h · todos</small>Ambulatório uro geral</td>
+          <td class="cc"><small>8–12h · sem plantonista e pós</small>Atividade prática (centro cirúrgico)</td>
+          <td class="cc"><small>8–10h · sem plantonista e pós</small>Centro cirúrgico<small>10–12h · todos</small>Visita na enfermaria com docente</td>
+          <td class="amb"><small>8–12h · todos</small>Ambulatório uro geral</td></tr>
         <tr><th class="t">14–16h</th>
           <td class="vasc">Vascular</td>
-          <td class="disc">Discussão de casos uro (grupo)</td>
+          <td class="disc" rowspan="2">Discussão de casos uro (grupo)<small>14–18h</small></td>
           <td class="amb">Ambulatório uropediatria</td>
-          <td class="disc">Discussão de casos uro (grupo)</td>
-          <td class="vasc">Vascular</td></tr>
+          <td class="disc" rowspan="2">Discussão de casos uro (grupo)<small>14–18h</small></td>
+          <td class="vasc" rowspan="2">Vascular — ambulatório de anticoagulação<small>14–18h · todos</small></td></tr>
         <tr><th class="t">16–18h</th>
-          <td>—</td><td>—</td><td class="vasc">Vascular</td><td>—</td><td class="vasc">Vascular</td></tr>
+          <td>—</td><td class="vasc">Vascular</td></tr>
         <tr><th class="t">18h</th>
           <td class="night">Visita com residentes<small>plantonista</small></td><td class="night">Visita com residentes<small>plantonista</small></td><td class="night">Visita com residentes<small>plantonista</small></td><td class="night">Visita com residentes<small>plantonista</small></td><td class="night">Visita com residentes<small>plantonista</small></td></tr>
       </tbody>
@@ -307,10 +344,12 @@ body.mode-hoje .wrap>*:not(#hoje){display:none!important}
 </section>
 
 <ul class="notes">
-  <li>Fontes: planilha de escala Vascular (01 a 25/09), programação de aulas Vascular grupos C e D 2026, cronograma de discussão de casos clínicos da Urologia e tabela de atividades dos internos na Urologia.</li>
+  <li>Fontes: planilha de escala Vascular (01 a 25/09), programação de aulas Vascular grupos C e D 2026, cronograma de discussão de casos clínicos da Urologia, tabela de atividades dos internos na Urologia e escala de plantão da Urologia (28/09 a 21/10).</li>
   <li>Postos da Vascular: CC = centro cirúrgico · Hemo = hemodinâmica · Enf = enfermaria · Amb 1/2/3 = ambulatórios · Pós = pós-plantão.</li>
-  <li>De 28 a 30/09 a escala ainda não saiu; só os compromissos da tarde estão marcados.</li>
-  <li>Feriados: 7/09 (Independência) e 12/10 (Nossa Senhora Aparecida).</li>
+  <li><b>Centro cirúrgico na Urologia:</b> o plantonista do dia e o do dia anterior (que sai às 8h) não participam; todos os outros vão. Nas demais atividades o grupo inteiro participa, inclusive plantonista e pós-plantão.</li>
+  <li>Na escala de plantão da Urologia, "Guilherme Cinel" e "Guilherme Lourenço" aparecem aqui como <b>Cinel</b> e <b>Lourenço</b>.</li>
+  <li><b>Plantão na Urologia: sempre 24h, das 8h às 8h</b> — inclusive em dia útil. Quem entra às 8h cobre o dia inteiro e a noite; quem sai às 8h é o plantonista do dia anterior.</li>
+  <li>Feriados: 7/09 (Independência) e 12/10 (Nossa Senhora Aparecida). No feriado de 12/10 há plantão, mas não há atividades da rotina.</li>
 </ul>
 </div>
 <div class="modal" id="modal-mapa" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -352,6 +391,49 @@ const SET={
 };
 const HOLI={'9-7':'Independência','10-12':'N. Sra. Aparecida'};
 
+/* ----- escala de plantão da urologia (28/09 a 21/10) -----
+   1 plantonista por dia. Fim de semana e feriado = 24h.
+   "Guilherme Cinel" e "Guilherme Lourenço" aparecem como Cinel e Lourenço. */
+const UROPL={
+ '9-28':'Pablo','9-29':'Cinel','9-30':'Edgar',
+ '10-1':'Thiago','10-2':'Aroldo','10-3':'Pablo','10-4':'Cinel','10-5':'Lourenço',
+ '10-6':'Thiago','10-7':'Matheus','10-8':'Cinel','10-9':'Lourenço','10-10':'Edgar',
+ '10-11':'Matheus','10-12':'Aroldo','10-13':'Thiago','10-14':'Matheus','10-15':'Pablo',
+ '10-16':'Edgar','10-17':'Lourenço','10-18':'Thiago','10-19':'Aroldo','10-20':'Matheus',
+ '10-21':'Lourenço',
+};
+
+/* ----- rotina semanal fixa da urologia -----
+   cc:true  = atividade no centro cirúrgico. O plantonista do dia e o do dia
+              anterior (pós-plantão) NÃO participam; os demais vão.
+   pl:true  = só o plantonista do dia.
+   vasc/uro = o texto é substituído pela aula/discussão marcada para a data. */
+const ROT_URO={
+ 1:[{t:'6h30–7h15',x:'Visita com residentes',k:'vis'},
+    {t:'7h–8h',x:'Visita na enfermaria com docente',k:'vis'},
+    {t:'8h–12h',x:'Centro cirúrgico',k:'cc',cc:true},
+    {t:'14h–16h',x:'Vascular',k:'vasc',vasc:true},
+    {t:'18h',x:'Visita com residentes',k:'night',pl:true}],
+ 2:[{t:'6h30–7h15',x:'Visita com residentes',k:'vis'},
+    {t:'8h–12h',x:'Ambulatório uro geral',k:'amb'},
+    {t:'14h–18h',x:'Discussão de casos uro (grupo)',k:'disc',uro:true},
+    {t:'18h',x:'Visita com residentes',k:'night',pl:true}],
+ 3:[{t:'6h30–7h15',x:'Visita com residentes',k:'vis'},
+    {t:'8h–12h',x:'Atividade prática (centro cirúrgico)',k:'cc',cc:true},
+    {t:'14h–16h',x:'Ambulatório uropediatria',k:'amb'},
+    {t:'16h–18h',x:'Vascular',k:'vasc',vasc:true},
+    {t:'18h',x:'Visita com residentes',k:'night',pl:true}],
+ 4:[{t:'6h30–7h15',x:'Visita com residentes',k:'vis'},
+    {t:'8h–10h',x:'Centro cirúrgico',k:'cc',cc:true},
+    {t:'10h–12h',x:'Visita na enfermaria com docente',k:'vis'},
+    {t:'14h–18h',x:'Discussão de casos uro (grupo)',k:'disc',uro:true},
+    {t:'18h',x:'Visita com residentes',k:'night',pl:true}],
+ 5:[{t:'6h30–7h15',x:'Visita com residentes',k:'vis'},
+    {t:'8h–12h',x:'Ambulatório uro geral',k:'amb'},
+    {t:'14h–18h',x:'Vascular · ambulatório de anticoagulação',k:'vasc'},
+    {t:'18h',x:'Visita com residentes',k:'night',pl:true}],
+};
+
 /* ----- aulas vascular (tarde) ----- */
 const VASC={
  '9-15':'16h - Varizes — Prof. Rafael','9-9':'Infectologia — Prof. Gabriel Berg e Profa. Ana Sforcin',
@@ -391,13 +473,70 @@ const sunI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wi
 const isWE=(m,d)=>{const w=new Date(2026,m-1,d).getDay();return w===0||w===6;};
 const is24=(m,d)=>isWE(m,d)||!!HOLI[m+'-'+d];
 
+/* ----- urologia: período, dia anterior e quem vai em cada atividade ----- */
+const URO_INI=new Date(2026,8,28), URO_FIM=new Date(2026,9,21);
+const emUro=(m,d)=>{const x=new Date(2026,m-1,d);return x>=URO_INI&&x<=URO_FIM;};
+const keyAnt=(m,d)=>{const x=new Date(2026,m-1,d);x.setDate(x.getDate()-1);return (x.getMonth()+1)+'-'+x.getDate();};
+/* Plantonista do dia anterior = pós-plantão; fica fora do centro cirúrgico.
+   Em 28/09 o dia anterior (27/09) ainda era o último plantão da Vascular, então
+   quem plantonou lá também sai de pós e fica fora do CC.
+   Devolve {n: nome, rot: 'uro'|'vasc'} ou null. */
+const posDe=(m,d)=>{
+  const k=keyAnt(m,d);
+  if(UROPL[k])return {n:UROPL[k],rot:'uro'};
+  const [pm,pd]=k.split('-').map(Number);
+  if(pm===9&&SET[pd]&&SET[pd].pl)return {n:SET[pd].pl,rot:'vasc'};
+  return null;
+};
+
+/**
+ * Monta o bloco de plantão + atividades de um dia de urologia.
+ * Devolve o HTML, quais blocos específicos foram aproveitados (para não
+ * repetir a aula/discussão embaixo) e os nomes com papel próprio no dia.
+ */
+function blocoUro(m,d,w){
+  const key=m+'-'+d, pl=UROPL[key]||null;
+  const out={html:'',usouVASC:false,usouURO:false,nomes:[]};
+  if(pl){
+    out.nomes.push(pl);
+    // na urologia todo plantão é de 24h, das 8h às 8h do dia seguinte
+    out.html+=`<div class="pl h24">${sunI}<span>plantão</span>${chip(pl)}<span class="h">8h → 8h · 24h</span></div>`;
+  }
+  const rot=ROT_URO[w];
+  if(!rot||HOLI[key])return out;               // fim de semana e feriado: só plantão
+
+  const posi=posDe(m,d), pos=posi?posi.n:null;
+  if(pos)out.nomes.push(pos);
+  const foraCC=[pl,pos].filter(Boolean);
+  const vaoCC=NAMES.filter(n=>!foraCC.includes(n));
+  const u=URO[key];
+
+  let h='<div class="acts">';
+  for(const a of rot){
+    let t=a.t, txt=a.x, k=a.k;
+    if(a.vasc&&VASC[key]){txt='Vascular · '+VASC[key];out.usouVASC=true;}
+    if(a.uro&&u){t=u.t;txt=u.x;out.usouURO=true;if(u.prova)k='prova';}
+    let quem;
+    if(a.pl)quem=pl?chip(pl):'<span class="todos">plantonista</span>';
+    else if(a.cc){
+      quem=vaoCC.map(n=>chip(n)).join('');
+      if(foraCC.length)quem+=`<span class="fora">fora: ${pl?pl+' (plantão)':''}${pl&&pos?' · ':''}${pos?pos+' (pós-plantão'+(posi.rot==='vasc'?' da Vascular':'')+')':''}</span>`;
+    }
+    else quem='<span class="todos">todos os 7</span>';
+    h+=`<div class="act ${k}"><span class="hh">${t}</span><span class="bd">${esc(txt)}<span class="wt">${quem}</span></span></div>`;
+  }
+  out.html+=h+'</div>';
+  return out;
+}
+
 function dayCard(m,d,opts){
   const w=new Date(2026,m-1,d).getDay();
   const key=m+'-'+d, holi=HOLI[key], we=isWE(m,d);
-  const e=(m===9&&SET[d])||null;
+  const uro=emUro(m,d);
+  const e=(!uro&&m===9&&SET[d])||null;
   const cls=['day'];
   if(we)cls.push('weekend'); if(holi)cls.push('holiday');
-  if(e&&e.all)cls.push('all');
+  if((e&&e.all)||(uro&&ROT_URO[w]&&!holi))cls.push('all');
   if(TODAY.getFullYear()===2026&&TODAY.getMonth()===m-1&&TODAY.getDate()===d)cls.push('today');
   let h=`<div class="dnum"><b>${d}</b><span>${DOW[w]}</span>${holi?`<span class="fer">feriado · ${holi}</span>`:(we?'<span class="wk">fim de semana</span>':'')}</div>`;
 
@@ -416,14 +555,17 @@ function dayCard(m,d,opts){
     if(e.pos)m2.push(`<span class="tag">Pós</span>${chip(e.pos)}`);
     if(m2.length)h+=`<div class="line">${m2.join('&nbsp;&nbsp;')}</div>`;
     if(e.tarde)h+=`<div class="band tarde"><b>tarde</b> · ${e.tarde}</div>`;
-  } else if(m===9&&!we&&!holi){
+  } else if(m===9&&!we&&!holi&&!uro){
     h+=`<div class="noesc">escala ainda não divulgada</div>`;
   }
-  if(VASC[key])h+=`<div class="band vascaula"><b>aula vascular</b> <span class="t">tarde</span><br>${esc(VASC[key])}</div>`;
+  let bu=null;
+  if(uro){bu=blocoUro(m,d,w);h+=bu.html;}
+  if(VASC[key]&&!(bu&&bu.usouVASC))h+=`<div class="band vascaula"><b>aula vascular</b> <span class="t">tarde</span><br>${esc(VASC[key])}</div>`;
   if(VPROVA[key])h+=`<div class="band prova">${esc(VPROVA[key])}</div>`;
-  if(URO[key]){const u=URO[key];h+=u.prova?`<div class="band prova">Urologia · ${esc(u.x)} <span class="t">${u.t}</span></div>`:`<div class="band uro"><b>uro</b> <span class="t">${u.t}</span><br>${esc(u.x)}</div>`;}
+  if(URO[key]&&!(bu&&bu.usouURO)){const u=URO[key];h+=u.prova?`<div class="band prova">Urologia · ${esc(u.x)} <span class="t">${u.t}</span></div>`:`<div class="band uro"><b>uro</b> <span class="t">${u.t}</span><br>${esc(u.x)}</div>`;}
   const names=new Set();
   if(e){[e.pl,e.cc,e.hemo,e.enf,e.pos,...(e.amb||[]),...(e.folga||[])].filter(Boolean).forEach(n=>names.add(n));}
+  if(bu)bu.nomes.forEach(n=>names.add(n));
   return `<div class="${cls.join(' ')}" data-names="${[...names].join(',')}">${h}</div>`;
 }
 
@@ -445,24 +587,46 @@ function month(m,el){
 month(9,document.getElementById('cal-set'));
 month(10,document.getElementById('cal-out'));
 
-/* ----- mapa de plantões ----- */
+/* ----- mapa de plantões (vascular, 1 a 27/09) ----- */
 (function(){
-  let g='<div class="grid"><div></div>';
-  for(let d=1;d<=30;d++){g+=`<div class="hd ${is24(9,d)?'we':''}">${d}</div>`;}
+  const dias=[];for(let d=1;d<=27;d++)dias.push(d);
+  let g=`<div class="grid" style="grid-template-columns:82px repeat(${dias.length},minmax(18px,1fr))"><div></div>`;
+  dias.forEach(d=>{g+=`<div class="hd ${is24(9,d)?'we':''}">${d}</div>`;});
   const tot={};
   NAMES.forEach(n=>{tot[n]={n12:0,n24:0};g+=`<div class="nm" style="--c:var(--${n})">${n}</div>`;
-    for(let d=1;d<=30;d++){
+    dias.forEach(d=>{
       const e=SET[d];let c='c';
       if(!e){c+=' unk';}
       else if(e.pl===n){if(is24(9,d)){c+=' n24';tot[n].n24++;}else{c+=' n12';tot[n].n12++;}}
       else if(e.pos===n)c+=' pos';
       else if(is24(9,d))c+=' we';
       g+=`<div class="${c}" style="--c:var(--${n})" title="${d}/09 ${n}"></div>`;
-    }});
+    });});
   g+='</div>';
-  g+=`<div class="leg"><span><i></i>plantão 12h (18h–6h)</span><span><i class="n24"></i>plantão 24h (7h–7h)</span><span><i class="pos"></i>pós-plantão</span><span><i class="unk"></i>escala não divulgada</span></div>`;
+  g+=`<div class="leg"><span><i></i>plantão 12h (18h–6h)</span><span><i class="n24"></i>plantão 24h (7h–7h)</span><span><i class="pos"></i>pós-plantão</span></div>`;
   g+='<div class="tot">'+NAMES.map(n=>`<span style="--c:var(--${n})"><b>${n}</b> ${tot[n].n12+tot[n].n24} plantões (${tot[n].n24} de 24h)</span>`).join('')+'</div>';
   document.getElementById('map').innerHTML=g;
+})();
+
+/* ----- mapa de plantões (urologia, 28/09 a 21/10) ----- */
+(function(){
+  const dias=[];
+  for(let x=new Date(URO_INI);x<=URO_FIM;x.setDate(x.getDate()+1))dias.push({m:x.getMonth()+1,d:x.getDate()});
+  let g=`<div class="grid" style="grid-template-columns:82px repeat(${dias.length},minmax(18px,1fr))"><div></div>`;
+  dias.forEach(({m,d})=>{g+=`<div class="hd ${is24(m,d)?'we':''}">${d}</div>`;});
+  const tot={};
+  NAMES.forEach(n=>{tot[n]={t:0,fds:0};g+=`<div class="nm" style="--c:var(--${n})">${n}</div>`;
+    dias.forEach(({m,d})=>{
+      const pl=UROPL[m+'-'+d],p=posDe(m,d);let c='c',tit=`${d}/${String(m).padStart(2,'0')}`;
+      if(pl===n){c+=' n24';tot[n].t++;if(is24(m,d))tot[n].fds++;tit+=' · plantão 24h (8h→8h)';}
+      else if(p&&p.n===n){c+=' pos';tit+=' · pós-plantão — fora do centro cirúrgico';}
+      else if(is24(m,d))c+=' we';
+      g+=`<div class="${c}" style="--c:var(--${n})" title="${tit}"></div>`;
+    });});
+  g+='</div>';
+  g+=`<div class="leg"><span><i class="n24"></i>plantão 24h (8h → 8h)</span><span><i class="pos"></i>pós-plantão (sai às 8h) — fora do centro cirúrgico</span></div>`;
+  g+='<div class="tot">'+NAMES.map(n=>`<span style="--c:var(--${n})"><b>${n}</b> ${tot[n].t} plantões (${tot[n].fds} em fim de semana/feriado)</span>`).join('')+'</div>';
+  document.getElementById('map-uro').innerHTML=g;
 })();
 
 /* ----- filtro por nome ----- */
@@ -474,7 +638,7 @@ picks.addEventListener('click',ev=>{
   picks.querySelectorAll('.pick').forEach(x=>x.classList.toggle('on',x===b));
   if(n){document.body.dataset.who=n;}else{delete document.body.dataset.who;}
   document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('me',c.dataset.n===n));
-  document.querySelectorAll('.day').forEach(dv=>dv.classList.toggle('mine',!!n&&dv.dataset.names.split(',').includes(n)));
+  document.querySelectorAll('.day').forEach(dv=>dv.classList.toggle('mine',!!n&&(dv.dataset.names||'').split(',').includes(n)));
   renderMine(n);
 });
 function renderMine(n){
@@ -488,6 +652,16 @@ function renderMine(n){
     if(e.amb){const i=e.amb.indexOf(n);if(i>=0)L.amb.push(`${d} (amb ${i+1})`);}
     if(e.folga&&e.folga.includes(n))L.folga.push(d);if(e.pos===n)L.pos.push(d);}
   const ds=a=>a.length?a.map(x=>`<span class="d">${x}</span>`).join(''):'<span style="color:var(--ink2)">—</span>';
+
+  /* urologia: plantões próprios e dias sem centro cirúrgico */
+  const U={pl:[],fora:[]};
+  for(let x=new Date(URO_INI);x<=URO_FIM;x.setDate(x.getDate()+1)){
+    const m=x.getMonth()+1,d=x.getDate(),key=m+'-'+d,dd=`${d}/${String(m).padStart(2,'0')}`;
+    if(UROPL[key]===n)U.pl.push(`<span class="d n h24">${dd} ${DOW[x.getDay()]} · 8h→8h</span>`);
+    const temCC=(ROT_URO[x.getDay()]||[]).some(a=>a.cc), p=posDe(m,d);
+    if(temCC&&!HOLI[key]&&(UROPL[key]===n||(p&&p.n===n)))U.fora.push(`${dd}${UROPL[key]===n?' (plantão)':' (pós)'}`);
+  }
+
   box.innerHTML=`<h3>${n} · setembro na Vascular</h3><table>
    <tr><td>plantões</td><td>${L.pl.join('')}</td></tr>
    <tr><td>centro cirúrgico</td><td>${ds(L.cc)}</td></tr>
@@ -497,6 +671,11 @@ function renderMine(n){
    <tr><td>folga</td><td>${ds(L.folga)}</td></tr>
    <tr><td>pós-plantão</td><td>${ds(L.pos)}</td></tr>
    <tr><td>todos</td><td>sextas 4, 11, 18 e 25 (discussão + ambulatório) · segundas 14 e 21 (visitão) · aulas e discussões uro conforme o calendário</td></tr>
+  </table>
+  <h3 style="margin-top:12px">${n} · Urologia (28/09 a 21/10)</h3><table>
+   <tr><td>plantões</td><td>${U.pl.length?U.pl.join(''):'<span style="color:var(--ink2)">—</span>'}</td></tr>
+   <tr><td>sem centro cirúrgico</td><td>${ds(U.fora)}</td></tr>
+   <tr><td>demais atividades</td><td>rotina normal todos os dias úteis: visita 6h30, ambulatórios, discussões de casos e vascular (sexta é o ambulatório de anticoagulação)</td></tr>
   </table>`;
 }
 /* ----- mapa do HC (pop-up) ----- */
@@ -526,7 +705,7 @@ if(QS.has('hoje')||QS.has('dia')){
   const wrap=document.querySelector('.wrap');
   const box=document.createElement('div');box.id='hoje';
   const fmt=TODAY.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
-  const est=TODAY.getMonth()===8?'Cirurgia Vascular':(TODAY.getMonth()===9?'Urologia':'');
+  const est=(TODAY.getMonth()===8&&TODAY.getDate()<=27)?'Cirurgia Vascular':((TODAY.getMonth()===8||TODAY.getMonth()===9)?'Urologia':'');
   const link=SITE_URL||location.origin+location.pathname.replace(/index\.html$/,'');
   let card=document.querySelector('.day.today');
   box.innerHTML=`<div class="hoje-head"><div class="vessels"><i></i><i></i></div><div class="hoje-title">${fmt.charAt(0).toUpperCase()+fmt.slice(1)}</div><div class="hoje-sub">Internos C/D${est?' · '+est:''}</div></div>`;
